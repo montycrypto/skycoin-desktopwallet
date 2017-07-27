@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MdCardModule, MdIconModule, MdListModule, MdTabsModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 
@@ -8,7 +9,12 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MdCardModule,
+    MdIconModule,
+    MdListModule,
+    MdTabsModule,
+    NoopAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
