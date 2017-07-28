@@ -22,6 +22,8 @@ export class WalletService {
     return this.wallets.asObservable();
   }
 
+  sum(): Observable<number> {
+    return this.all().map(wallets => wallets.map(wallet => wallet.balance >= 0 ? wallet.balance : 0).reduce((a , b) => a + b, 0));
   }
 
   private loadData(): void {
