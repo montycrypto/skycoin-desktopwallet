@@ -10,6 +10,7 @@ import { WalletsComponent } from './components/pages/wallets/wallets.component';
 import { WalletDetailComponent } from './components/pages/wallets/address-detail/wallet-detail.component';
 import { CreateWalletComponent } from './components/pages/wallets/create-wallet/create-wallet.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SkyPipe } from './pipes/sky.pipe';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     WalletsComponent,
     WalletDetailComponent,
     CreateWalletComponent,
+    SkyPipe,
   ],
   entryComponents: [
     CreateWalletComponent,
