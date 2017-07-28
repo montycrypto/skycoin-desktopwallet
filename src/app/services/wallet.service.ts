@@ -35,16 +35,25 @@ export class WalletService {
 
   private refreshBalances() {
     this.wallets.first().subscribe(wallets => {
-      Observable.forkJoin(wallets.map(wallet => this.retrieveWalletBalance(wallet).map(balance => {
-        wallet.balance = balance.confirmed.coins / 1000000;
+      Observable.forkJoin(wallets.map(wallet => this.retrieveWalletBalance(wallet).map(response => {
+        wallet.entries = response;
+        wallet.balance = response.map(address => address.balance >= 0 ? address.balance : 0).reduce((a , b) => a + b, 0);
         return wallet;
       })))
         .subscribe(newWallets => this.wallets.next(newWallets));
     });
   }
 
+  private retrieveAddressBalance(address: any|any[]) {
+    const addresses = Array.isArray(address) ? address.map(address => address.address).join(',') : address.address;
+    return this.apiService.get('balance', {addrs: addresses});
+  }
+
   private retrieveWalletBalance(wallet: WalletModel): Observable<any> {
-    return this.apiService.get('wallet/balance', {id: wallet.meta.filename});
+    return Observable.forkJoin(wallet.entries.map(address => this.retrieveAddressBalance(address).map(balance => {
+      address.balance = balance.confirmed.coins;
+      return address;
+    })));
   }
 
   private retrieveWallets(): Observable<WalletModel[]> {
