@@ -32,7 +32,19 @@ export class WalletService {
   }
 
   private refreshBalances() {
+    this.wallets.first().subscribe(wallets => {
+      Observable.forkJoin(wallets.map(wallet => this.retrieveWalletBalance(wallet).map(balance => {
+        wallet.balance = balance.confirmed.coins / 1000000;
+        return wallet;
+      })))
+        .subscribe(newWallets => this.wallets.next(newWallets));
+    });
   }
+
+  private retrieveWalletBalance(wallet: WalletModel): Observable<any> {
+    return this.apiService.get('wallet/balance', {id: wallet.meta.filename});
+  }
+
   private retrieveWallets(): Observable<WalletModel[]> {
     return this.apiService.get('wallets');
   }
