@@ -18,6 +18,10 @@ export class WalletService {
     this.loadData();
   }
 
+  addAddress(wallet: WalletModel) {
+    return this.apiService.post('wallet/newAddress', {id: wallet.meta.filename});
+  }
+
   all(): Observable<WalletModel[]> {
     return this.wallets.asObservable();
   }

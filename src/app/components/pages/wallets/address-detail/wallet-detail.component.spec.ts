@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddressDetailComponent } from './address-detail.component';
+import { AddressDetailComponent } from './wallet-detail.component';
 
 describe('AddressDetailComponent', () => {
   let component: AddressDetailComponent;

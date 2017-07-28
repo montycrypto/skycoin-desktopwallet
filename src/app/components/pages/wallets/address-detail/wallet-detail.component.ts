@@ -3,11 +3,11 @@ import { WalletService } from '../../../../services/wallet.service';
 import { WalletModel } from '../../../../models/wallet.model';
 
 @Component({
-  selector: 'app-address-detail',
-  templateUrl: './address-detail.component.html',
-  styleUrls: ['./address-detail.component.css']
+  selector: 'app-wallet-detail',
+  templateUrl: './wallet-detail.component.html',
+  styleUrls: ['./wallet-detail.component.css']
 })
-export class AddressDetailComponent {
+export class WalletDetailComponent {
   @Input() wallet: WalletModel;
 
   constructor(
@@ -15,10 +15,6 @@ export class AddressDetailComponent {
   ) {}
 
   addAddress() {
-    //
-  }
-
-  addWallet() {
-    //
+    this.walletService.addAddress(this.wallet).subscribe(output => this.wallet.entries.push(output));
   }
 }
