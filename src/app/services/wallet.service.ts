@@ -34,6 +34,10 @@ export class WalletService {
     return this.apiService.get('wallet/newSeed').map(response => response.seed);
   }
 
+  sendSkycoin(wallet_id: string, address: string, amount: number) {
+    return this.apiService.post('wallet/spend', {id: wallet_id, dst: address, coins: amount});
+  }
+
   sum(): Observable<number> {
     return this.all().map(wallets => wallets.map(wallet => wallet.balance >= 0 ? wallet.balance : 0).reduce((a , b) => a + b, 0));
   }

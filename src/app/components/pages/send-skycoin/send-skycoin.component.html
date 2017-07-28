@@ -1,0 +1,16 @@
+<div [formGroup]="form" class="send-skycoin-form">
+  <md-select formControlName="wallet_id" placeholder="Wallet" class="input-field">
+    <md-option *ngFor="let wallet of walletService.all() | async" [value]="wallet.meta.filename">
+      {{ wallet.meta.label }}
+    </md-option>
+  </md-select>
+  <md-input-container class="input-field">
+    <input mdInput formControlName="address" placeholder="Recipient address">
+  </md-input-container>
+  <md-input-container class="input-field">
+    <input mdInput formControlName="amount" placeholder="Amount">
+  </md-input-container>
+  <div class="button-line">
+    <a md-raised-button color="primary" (click)="send()">Send</a>
+  </div>
+</div>

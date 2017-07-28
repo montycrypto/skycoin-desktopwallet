@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MdButtonModule, MdCardModule, MdDialogModule, MdExpansionModule, MdIconModule, MdInputModule, MdListModule, MdTabsModule } from '@angular/material';
+import {
+  MdButtonModule, MdCardModule, MdDialogModule, MdExpansionModule, MdIconModule, MdInputModule, MdListModule,
+  MdSelectModule, MdTabsModule
+} from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
@@ -11,6 +14,7 @@ import { WalletDetailComponent } from './components/pages/wallets/address-detail
 import { CreateWalletComponent } from './components/pages/wallets/create-wallet/create-wallet.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SkyPipe } from './pipes/sky.pipe';
+import { SendSkycoinComponent } from './components/pages/send-skycoin/send-skycoin.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +23,7 @@ import { SkyPipe } from './pipes/sky.pipe';
     WalletDetailComponent,
     CreateWalletComponent,
     SkyPipe,
+    SendSkycoinComponent,
   ],
   entryComponents: [
     CreateWalletComponent,
@@ -33,6 +38,7 @@ import { SkyPipe } from './pipes/sky.pipe';
     MdIconModule,
     MdInputModule,
     MdListModule,
+    MdSelectModule,
     MdTabsModule,
     NoopAnimationsModule,
     ReactiveFormsModule,
