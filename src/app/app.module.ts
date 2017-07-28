@@ -10,12 +10,14 @@ import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
 import { ApiService } from './services/api.service';
 import { WalletService } from './services/wallet.service';
+import { WalletsComponent } from './components/pages/wallets/wallets.component';
 import { AddressDetailComponent } from './components/pages/wallets/address-detail/address-detail.component';
 import { CreateWalletComponent } from './components/pages/wallets/create-wallet/create-wallet.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    WalletsComponent,
     AddressDetailComponent,
     CreateWalletComponent,
   ],
@@ -27,6 +29,7 @@ import { CreateWalletComponent } from './components/pages/wallets/create-wallet/
     HttpModule,
     MdButtonModule,
     MdCardModule,
+    MdDialogModule,
     MdExpansionModule,
     MdIconModule,
     MdListModule,

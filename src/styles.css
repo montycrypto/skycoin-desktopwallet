@@ -13,3 +13,25 @@ header {
   height: 300px;
 }
 
+md-expansion-panel {
+  margin-top: 20px !important;
+}
+
+.header-container {
+  max-width: 848px;
+  text-align: center;
+  padding-top: 40px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.header-container h1 {
+  font-size: 3em;
+  color: white;
+}
+
+.button-line {
+  margin-top: 20px;
+  text-align: right;
+}
+

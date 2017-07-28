@@ -1,5 +1,7 @@
 <header>
-
+  <div class="header-container">
+    <h1>Confirmed Balance {{ walletService.sum() | async }} SKY</h1>
+  </div>
 </header>
 
 <md-card class="example-card">
@@ -9,24 +11,7 @@
   <md-card-content>
     <md-tab-group>
       <md-tab label="Wallets">
-        <md-expansion-panel *ngFor="let wallet of walletService.all() | async">
-          <md-expansion-panel-header>
-            <md-panel-title>
-              {{ wallet.meta.label }} - {{ wallet.balance }}
-            </md-panel-title>
-            <md-panel-description>
-              This is a summary of the content
-            </md-panel-description>
-          </md-expansion-panel-header>
-          <md-list>
-            <h3 md-subheader>Addresses</h3>
-            <md-list-item *ngFor="let address of wallet.entries">
-              <md-icon md-list-icon>note</md-icon>
-              <h4 md-line>{{address.address}}</h4>
-              <!--<p md-line> {{note.updated | date}} </p>-->
-            </md-list-item>
-          </md-list>
-        </md-expansion-panel>
+        <app-wallets></app-wallets>
       </md-tab>
       <md-tab label="Send">
         <h1>Todo: add Send screen</h1>
