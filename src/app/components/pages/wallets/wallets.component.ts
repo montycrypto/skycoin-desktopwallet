@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { WalletService } from '../../../services/wallet.service';
-import { MdDialog } from '@angular/material';
+import { MdDialog, MdDialogConfig } from '@angular/material';
 import { CreateWalletComponent } from './create-wallet/create-wallet.component';
 
 @Component({
@@ -16,7 +16,9 @@ export class WalletsComponent {
   ) {}
 
   addWallet() {
-    this.dialog.open(CreateWalletComponent).afterClosed().subscribe(result => {
+    const config = new MdDialogConfig();
+    config.width = '500px';
+    this.dialog.open(CreateWalletComponent, config).afterClosed().subscribe(result => {
       //
     });
   }

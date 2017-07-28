@@ -22,6 +22,14 @@ export class WalletService {
     return this.wallets.asObservable();
   }
 
+  create(label, seed) {
+    return this.apiService.post('wallet/create', {label: label, seed: seed});
+  }
+
+  generateSeed(): Observable<string> {
+    return this.apiService.get('wallet/newSeed').map(response => response.seed);
+  }
+
   sum(): Observable<number> {
     return this.all().map(wallets => wallets.map(wallet => wallet.balance >= 0 ? wallet.balance : 0).reduce((a , b) => a + b, 0));
   }

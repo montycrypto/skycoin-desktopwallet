@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
@@ -19,6 +19,12 @@ export class ApiService {
       .catch((error: any) => Observable.throw(error || 'Server error'));
   }
 
+  post(url, options = {}) {
+    return this.http.post(this.getUrl(url), this.getQueryString(options), this.returnRequestOptions())
+      .map((res: any) => res.json())
+      .catch((error: any) => Observable.throw(error || 'Server error'));
+  }
+
   private getHeaders() {
     const headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -26,18 +32,26 @@ export class ApiService {
     return headers;
   }
 
+  returnRequestOptions() {
+    const options = new RequestOptions();
+
+    options.headers = this.getHeaders();
+
+    return options;
+  }
+
   private getQueryString(parameters = null) {
     if (!parameters) {
       return '';
     }
 
-    return '?' + Object.keys(parameters).reduce((array,key) => {
+    return Object.keys(parameters).reduce((array,key) => {
       array.push(key + '=' + encodeURIComponent(parameters[key]));
       return array;
     }, []).join('&');
   }
 
-  private getUrl(url, options) {
-    return this.url + url + this.getQueryString(options);
+  private getUrl(url, options = null) {
+    return this.url + url + '?' + this.getQueryString(options);
   }
 }
