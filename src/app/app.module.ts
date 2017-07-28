@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MdCardModule, MdIconModule, MdListModule, MdTabsModule } from '@angular/material';
+import { MdCardModule, MdExpansionModule, MdIconModule, MdListModule, MdTabsModule } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
@@ -16,6 +16,7 @@ import { WalletService } from './services/wallet.service';
     BrowserModule,
     HttpModule,
     MdCardModule,
+    MdExpansionModule,
     MdIconModule,
     MdListModule,
     MdTabsModule,
