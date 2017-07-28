@@ -26,9 +26,15 @@ export class ApiService {
     return headers;
   }
 
-  private getQueryString(parameters = []) {
-    // todo: add method
-    return '';
+  private getQueryString(parameters = null) {
+    if (!parameters) {
+      return '';
+    }
+
+    return '?' + Object.keys(parameters).reduce((array,key) => {
+      array.push(key + '=' + encodeURIComponent(parameters[key]));
+      return array;
+    }, []).join('&');
   }
 
   private getUrl(url, options) {
