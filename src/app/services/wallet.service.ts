@@ -10,6 +10,7 @@ import 'rxjs/add/operator/first';
 @Injectable()
 export class WalletService {
 
+  transactions: Subject<any[]> = new BehaviorSubject<any[]>([]);
   wallets: Subject<WalletModel[]> = new BehaviorSubject<WalletModel[]>([]);
 
   constructor(
@@ -34,6 +35,10 @@ export class WalletService {
     return this.apiService.get('wallet/newSeed').map(response => response.seed);
   }
 
+  history(): Observable<any[]> {
+    return this.transactions.asObservable();
+  }
+
   sendSkycoin(wallet_id: string, address: string, amount: number) {
     return this.apiService.post('wallet/spend', {id: wallet_id, dst: address, coins: amount});
   }
@@ -46,6 +51,8 @@ export class WalletService {
     this.retrieveWallets().first().subscribe(wallets => {
       this.wallets.next(wallets);
       this.refreshBalances();
+      // this.retrieveHistory();
+      this.retrieveTransactions();
     });
   }
 
@@ -65,11 +72,32 @@ export class WalletService {
     return this.apiService.get('balance', {addrs: addresses});
   }
 
+  private retrieveAddressTransactions(address: any) {
+    return this.apiService.get('explorer/address', {address: address.address});
+  }
+
+  private retrieveTransactions() {
+    return this.wallets.first().subscribe(wallets => {
+      Observable.forkJoin(wallets.map(wallet => this.retrieveWalletTransactions(wallet)))
+        .map(addresses => [].concat.apply([], addresses).sort((a, b) =>  b.timestamp - a.timestamp))
+        .subscribe(transactions => this.transactions.next(transactions));
+    });
+  }
+
   private retrieveWalletBalance(wallet: WalletModel): Observable<any> {
     return Observable.forkJoin(wallet.entries.map(address => this.retrieveAddressBalance(address).map(balance => {
       address.balance = balance.confirmed.coins;
       return address;
     })));
+  }
+
+  private retrieveWalletTransactions(wallet: WalletModel) {
+    return Observable.forkJoin(wallet.entries.map(address => this.retrieveAddressTransactions(address)))
+      .map(addresses => [].concat.apply([], addresses));
+  }
+
+  private retrieveWalletUnconfirmedTransactions(wallet: WalletModel) {
+    return this.apiService.get('wallet/transactions', {id: wallet.meta.filename});
   }
 
   private retrieveWallets(): Observable<WalletModel[]> {
