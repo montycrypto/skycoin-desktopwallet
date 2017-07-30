@@ -15,6 +15,7 @@ import { CreateWalletComponent } from './components/pages/wallets/create-wallet/
 import { ReactiveFormsModule } from '@angular/forms';
 import { SkyPipe } from './pipes/sky.pipe';
 import { SendSkycoinComponent } from './components/pages/send-skycoin/send-skycoin.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { SendSkycoinComponent } from './components/pages/send-skycoin/send-skyco
     MdListModule,
     MdSelectModule,
     MdTabsModule,
+    NgxDatatableModule,
     NoopAnimationsModule,
     ReactiveFormsModule,
   ],
