@@ -1,0 +1,17 @@
+<ngx-datatable
+  class="material"
+  [rows]="walletService.history() | async"
+  columnMode="flex"
+  [headerHeight]="50"
+  [footerHeight]="0"
+  [rowHeight]="50"
+  [scrollbarV]="true"
+  [scrollbarH]="true">
+  <ngx-datatable-column name="Timestamp" prop="timestamp" [flexGrow]="2"></ngx-datatable-column>
+  <!--<ngx-datatable-column name="Status"></ngx-datatable-column>-->
+  <ngx-datatable-column name="Type" prop="type" [flexGrow]="1"></ngx-datatable-column>
+  <!--<ngx-datatable-column name="Addresses"></ngx-datatable-column>-->
+  <!--<ngx-datatable-column name="Notes"></ngx-datatable-column>-->
+  <ngx-datatable-column name="Amount" [flexGrow]="1"></ngx-datatable-column>
+  <ngx-datatable-column name="Transaction ID" prop="txid" [flexGrow]="4"></ngx-datatable-column>
+</ngx-datatable>
