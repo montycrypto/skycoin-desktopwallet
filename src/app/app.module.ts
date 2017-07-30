@@ -16,10 +16,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SkyPipe } from './pipes/sky.pipe';
 import { SendSkycoinComponent } from './components/pages/send-skycoin/send-skycoin.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { HistoryComponent } from './components/pages/history/history.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HistoryComponent,
     WalletsComponent,
     WalletDetailComponent,
     CreateWalletComponent,
