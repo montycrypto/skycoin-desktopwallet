@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {
   MdButtonModule, MdCardModule, MdDialogModule, MdExpansionModule, MdIconModule, MdInputModule, MdListModule,
-  MdSelectModule, MdTabsModule
+  MdSelectModule, MdTabsModule, MdToolbarModule
 } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
@@ -60,6 +60,7 @@ const ROUTES = [
     SkyPipe,
     SendSkycoinComponent,
     DateFromNowPipe,
+    BreadcrumbComponent,
   ],
   entryComponents: [
     CreateWalletComponent,
@@ -76,6 +77,7 @@ const ROUTES = [
     MdListModule,
     MdSelectModule,
     MdTabsModule,
+    MdToolbarModule,
     NgxDatatableModule,
     NoopAnimationsModule,
     ReactiveFormsModule,

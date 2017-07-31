@@ -1,28 +1,23 @@
-<header>
-  <div class="header-container">
-    <h1>Confirmed Balance {{ walletService.sum() | async | sky }}</h1>
-  </div>
-</header>
+<md-toolbar color="primary">
+  <span>Skycoin</span>
+  <span><app-breadcrumb></app-breadcrumb></span>
+  <!-- This fills the remaining space of the current row -->
+  <span class="fill-remaining-space"></span>
 
-<md-card class="example-card">
-  <md-card-header>
+  <span>{{ walletService.sum() | async | sky }}</span>
+  <button md-button>Settings</button>
+</md-toolbar>
+<md-toolbar>
+  <button md-button [routerLink]="['/wallets']">Wallets</button>
+  <button md-button [routerLink]="['/send']">Send</button>
+  <button md-button [routerLink]="['/history']">History</button>
+  <button md-button>Explorer</button>
+  <!-- This fills the remaining space of the current row -->
+  <span class="fill-remaining-space"></span>
 
-  </md-card-header>
-  <md-card-content>
-    <md-tab-group>
-      <md-tab label="Wallets">
-        <app-wallets></app-wallets>
-      </md-tab>
-      <md-tab label="Send">
-        <app-send-skycoin></app-send-skycoin>
-      </md-tab>
-      <md-tab label="History">
-        <app-history></app-history>
-      </md-tab>
-      <md-tab label="Explorer">
-        <h1>Todo: add Explorer</h1>
-        <p>...</p>
-      </md-tab>
-    </md-tab-group>
-  </md-card-content>
-</md-card>
+  <span>Search field</span>
+
+</md-toolbar>
+<div class="sky-container">
+  <router-outlet></router-outlet>
+</div>

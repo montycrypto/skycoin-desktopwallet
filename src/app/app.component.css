@@ -1,6 +1,22 @@
 md-card {
   max-width: 900px;
-  margin-top: -80px;
+  margin-top: 80px;
   margin-right: auto;
   margin-left: auto;
+}
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+.sky-container {
+  max-width: 900px;
+  margin-top: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+md-toolbar span {
+  margin: 0 20px;
 }
