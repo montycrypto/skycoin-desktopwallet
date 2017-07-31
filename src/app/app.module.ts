@@ -18,7 +18,37 @@ import { SendSkycoinComponent } from './components/pages/send-skycoin/send-skyco
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { HistoryComponent } from './components/pages/history/history.component';
 import { DateFromNowPipe } from './pipes/date-from-now.pipe';
+import { RouterModule } from '@angular/router';
 import { BreadcrumbComponent } from './components/layout/breadcrumb/breadcrumb.component';
+
+const ROUTES = [
+  {
+    path: '',
+    redirectTo: 'wallets',
+    pathMatch: 'full'
+  },
+  {
+    path: 'wallets',
+    component: WalletsComponent,
+    data: {
+      breadcrumb: 'Wallets',
+    },
+  },
+  {
+    path: 'send',
+    component: SendSkycoinComponent,
+    data: {
+      breadcrumb: 'Send Skycoin',
+    },
+  },
+  {
+    path: 'history',
+    component: HistoryComponent,
+    data: {
+      breadcrumb: 'History',
+    },
+  },
+];
 
 @NgModule({
   declarations: [
@@ -49,6 +79,7 @@ import { BreadcrumbComponent } from './components/layout/breadcrumb/breadcrumb.c
     NgxDatatableModule,
     NoopAnimationsModule,
     ReactiveFormsModule,
+    RouterModule.forRoot(ROUTES),
   ],
   providers: [
     ApiService,
