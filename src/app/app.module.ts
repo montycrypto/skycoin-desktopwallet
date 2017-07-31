@@ -17,6 +17,7 @@ import { SkyPipe } from './pipes/sky.pipe';
 import { SendSkycoinComponent } from './components/pages/send-skycoin/send-skycoin.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { HistoryComponent } from './components/pages/history/history.component';
+import { DateFromNowPipe } from './pipes/date-from-now.pipe';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { HistoryComponent } from './components/pages/history/history.component';
     CreateWalletComponent,
     SkyPipe,
     SendSkycoinComponent,
+    DateFromNowPipe,
   ],
   entryComponents: [
     CreateWalletComponent,
