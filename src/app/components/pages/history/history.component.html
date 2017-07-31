@@ -1,4 +1,5 @@
-<ngx-datatable
+<md-card>
+  <ngx-datatable
   class="material"
   [rows]="walletService.history() | async"
   columnMode="flex"
@@ -20,3 +21,4 @@
   <ngx-datatable-column name="Amount" [flexGrow]="1"></ngx-datatable-column>
   <ngx-datatable-column name="Transaction ID" prop="txid" [flexGrow]="6"></ngx-datatable-column>
 </ngx-datatable>
+</md-card>

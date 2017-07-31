@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { WalletService } from '../../../services/wallet.service';
+import { MdDialog } from '@angular/material';
 
 @Component({
   selector: 'app-history',
@@ -11,6 +12,7 @@ export class HistoryComponent implements OnInit {
   transactions: any[];
 
   constructor(
+    public dialog: MdDialog,
     public walletService: WalletService,
   ) { }
 
