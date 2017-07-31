@@ -1,3 +1,7 @@
 ngx-datatable {
   margin-top: 40px;
 }
+
+md-icon {
+  cursor: pointer;
+}
