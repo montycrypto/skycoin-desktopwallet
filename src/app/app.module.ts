@@ -18,6 +18,7 @@ import { SendSkycoinComponent } from './components/pages/send-skycoin/send-skyco
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { HistoryComponent } from './components/pages/history/history.component';
 import { DateFromNowPipe } from './pipes/date-from-now.pipe';
+import { BreadcrumbComponent } from './components/layout/breadcrumb/breadcrumb.component';
 
 @NgModule({
   declarations: [
