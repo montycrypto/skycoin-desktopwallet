@@ -39,3 +39,7 @@ md-expansion-panel {
   margin-top: 40px;
   text-align: right;
 }
+
+.datatable-row-group {
+  cursor: pointer;
+}

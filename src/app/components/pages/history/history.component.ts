@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { WalletService } from '../../../services/wallet.service';
 import { MdDialog } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-history',
@@ -12,12 +13,18 @@ export class HistoryComponent implements OnInit {
   transactions: any[];
 
   constructor(
-    public dialog: MdDialog,
+    public router: Router,
     public walletService: WalletService,
   ) { }
 
   ngOnInit() {
     this.walletService.history().subscribe(transactions => this.transactions = this.mapTransactions(transactions));
+  }
+
+  onActivate(response) {
+    if (response.row && response.row.txid) {
+      this.router.navigate(['/history', response.row.txid]);
+    }
   }
 
   private mapTransactions(transactions) {

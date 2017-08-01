@@ -1,5 +1,4 @@
-<md-card>
-  <ngx-datatable
+<ngx-datatable #table
   class="material"
   [rows]="walletService.history() | async"
   columnMode="flex"
@@ -7,6 +6,7 @@
   [footerHeight]="0"
   [rowHeight]="50"
   [scrollbarV]="true"
+  (activate)="onActivate($event)"
   [scrollbarH]="true">
   <ngx-datatable-column name="Timestamp" prop="timestamp" [flexGrow]="2">
     <!--import * as moment from 'moment';-->
@@ -21,4 +21,4 @@
   <ngx-datatable-column name="Amount" [flexGrow]="1"></ngx-datatable-column>
   <ngx-datatable-column name="Transaction ID" prop="txid" [flexGrow]="6"></ngx-datatable-column>
 </ngx-datatable>
-</md-card>
+
