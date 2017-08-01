@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {
-  MdButtonModule, MdCardModule, MdDialogModule, MdExpansionModule, MdIconModule, MdInputModule, MdListModule,
+  MdButtonModule, MdCardModule, MdDialogModule, MdExpansionModule, MdGridListModule, MdIconModule, MdInputModule,
+  MdListModule,
   MdSelectModule, MdTabsModule, MdToolbarModule
 } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,6 +21,7 @@ import { HistoryComponent } from './components/pages/history/history.component';
 import { DateFromNowPipe } from './pipes/date-from-now.pipe';
 import { RouterModule } from '@angular/router';
 import { BreadcrumbComponent } from './components/layout/breadcrumb/breadcrumb.component';
+import { TransactionComponent } from './components/pages/transaction/transaction.component';
 import { BackButtonComponent } from './components/layout/back-button/back-button.component';
 
 const ROUTES = [
@@ -44,10 +46,22 @@ const ROUTES = [
   },
   {
     path: 'history',
-    component: HistoryComponent,
-    data: {
-      breadcrumb: 'History',
-    },
+    children: [
+      {
+        path: '',
+        component: HistoryComponent,
+        data: {
+          breadcrumb: 'History',
+        },
+      },
+      {
+        path: ':transaction',
+        component: TransactionComponent,
+        data: {
+          breadcrumb: 'Transaction',
+        },
+      },
+    ],
   },
 ];
 
@@ -62,6 +76,7 @@ const ROUTES = [
     SendSkycoinComponent,
     DateFromNowPipe,
     BreadcrumbComponent,
+    TransactionComponent,
     BackButtonComponent,
   ],
   entryComponents: [
@@ -74,6 +89,7 @@ const ROUTES = [
     MdCardModule,
     MdDialogModule,
     MdExpansionModule,
+    MdGridListModule,
     MdIconModule,
     MdInputModule,
     MdListModule,
