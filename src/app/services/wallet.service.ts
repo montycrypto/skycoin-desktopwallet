@@ -6,6 +6,7 @@ import { WalletModel } from '../models/wallet.model';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 import 'rxjs/add/operator/first';
+import 'rxjs/add/operator/mergeMap';
 
 @Injectable()
 export class WalletService {
@@ -47,6 +48,17 @@ export class WalletService {
     return this.all().map(wallets => wallets.map(wallet => wallet.balance >= 0 ? wallet.balance : 0).reduce((a , b) => a + b, 0));
   }
 
+  transaction(txid: string): Observable<any> {
+    return this.apiService.get('transaction', {txid: txid}).flatMap(transaction => {
+      return Observable.forkJoin(transaction.txn.inputs.map(input => this.retrieveInputAddress(input).map(response => {
+        return response.owner_address;
+      }))).map(inputs => {
+        transaction.txn.inputs = inputs;
+        return transaction;
+      });
+    });
+  }
+
   private loadData(): void {
     this.retrieveWallets().first().subscribe(wallets => {
       this.wallets.next(wallets);
@@ -74,6 +86,10 @@ export class WalletService {
 
   private retrieveAddressTransactions(address: any) {
     return this.apiService.get('explorer/address', {address: address.address});
+  }
+
+  private retrieveInputAddress(input: string) {
+    return this.apiService.get('uxout', {uxid: input});
   }
 
   private retrieveTransactions() {
