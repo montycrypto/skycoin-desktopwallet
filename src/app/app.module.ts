@@ -20,6 +20,7 @@ import { HistoryComponent } from './components/pages/history/history.component';
 import { DateFromNowPipe } from './pipes/date-from-now.pipe';
 import { RouterModule } from '@angular/router';
 import { BreadcrumbComponent } from './components/layout/breadcrumb/breadcrumb.component';
+import { BackButtonComponent } from './components/layout/back-button/back-button.component';
 
 const ROUTES = [
   {
@@ -61,6 +62,7 @@ const ROUTES = [
     SendSkycoinComponent,
     DateFromNowPipe,
     BreadcrumbComponent,
+    BackButtonComponent,
   ],
   entryComponents: [
     CreateWalletComponent,
