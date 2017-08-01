@@ -3,22 +3,17 @@
   [rows]="walletService.history() | async"
   columnMode="flex"
   [headerHeight]="50"
-  [footerHeight]="0"
+  [footerHeight]="50"
   [rowHeight]="50"
-  [scrollbarV]="true"
-  (activate)="onActivate($event)"
-  [scrollbarH]="true">
-  <ngx-datatable-column name="Timestamp" prop="timestamp" [flexGrow]="2">
-    <!--import * as moment from 'moment';-->
+  [limit]="10"
+  [scrollbarH]="true"
+  (activate)="onActivate($event)">
+  <ngx-datatable-column name="Timestamp" prop="timestamp" [flexGrow]="1">
     <ng-template let-value="value" ngx-datatable-cell-template>
       <strong>{{ value | dateFromNow }}</strong>
     </ng-template>
   </ngx-datatable-column>
-  <!--<ngx-datatable-column name="Status"></ngx-datatable-column>-->
-  <ngx-datatable-column name="Type" prop="type" [flexGrow]="1"></ngx-datatable-column>
-  <!--<ngx-datatable-column name="Addresses"></ngx-datatable-column>-->
-  <!--<ngx-datatable-column name="Notes"></ngx-datatable-column>-->
   <ngx-datatable-column name="Amount" [flexGrow]="1"></ngx-datatable-column>
-  <ngx-datatable-column name="Transaction ID" prop="txid" [flexGrow]="6"></ngx-datatable-column>
+  <ngx-datatable-column name="Transaction ID" prop="txid" [flexGrow]="5"></ngx-datatable-column>
 </ngx-datatable>
 
