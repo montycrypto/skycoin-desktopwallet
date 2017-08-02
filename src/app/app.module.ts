@@ -23,6 +23,7 @@ import { RouterModule } from '@angular/router';
 import { BreadcrumbComponent } from './components/layout/breadcrumb/breadcrumb.component';
 import { TransactionComponent } from './components/pages/transaction/transaction.component';
 import { BackButtonComponent } from './components/layout/back-button/back-button.component';
+import { BlockchainService } from './services/blockchain.service';
 
 const ROUTES = [
   {
@@ -103,6 +104,7 @@ const ROUTES = [
   ],
   providers: [
     ApiService,
+    BlockchainService,
     WalletService,
   ],
   bootstrap: [AppComponent]
