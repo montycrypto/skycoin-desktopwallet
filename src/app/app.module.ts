@@ -26,6 +26,7 @@ import { BackButtonComponent } from './components/layout/back-button/back-button
 import { ExplorerComponent } from './components/pages/explorer/explorer.component';
 import { BlockchainService } from './services/blockchain.service';
 import { DateTimePipe } from './pipes/date-time.pipe';
+import { TransactionsAmountPipe } from './pipes/transactions-amount.pipe';
 
 const ROUTES = [
   {
@@ -90,6 +91,7 @@ const ROUTES = [
     BackButtonComponent,
     ExplorerComponent,
     DateTimePipe,
+    TransactionsAmountPipe,
   ],
   entryComponents: [
     CreateWalletComponent,
