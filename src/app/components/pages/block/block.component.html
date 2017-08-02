@@ -1,0 +1,29 @@
+<md-card>
+  <md-card-title>Block {{ block && block.header ? block.header.seq : '..' }} <app-back-button></app-back-button></md-card-title>
+  <md-card class="skycoin-details">
+    <div class="skycoin-detail-keys">
+      ID: <br>
+      Timestamp: <br>
+      Hash: <br>
+      Parent hash: <br>
+      Transactions: <br>
+      Total value: <br>
+    </div>
+    <div class="skycoin-detail-values" *ngIf="block">
+      {{ block && block.header ? block.header.seq : '' }} <br>
+      {{ block.header.timestamp | dateTime }} <br>
+      {{ block && block.header ? block.header.block_hash : '' }} <br>
+      {{ block && block.header ? block.header.previous_block_hash : '' }} <br>
+      {{ block && block.body && block.body.txns ? block.body.txns.length : '' }} <br>
+      {{ block.body.txns | transactionsAmount }}
+    </div>
+  </md-card>
+
+  <md-list *ngIf="block && block.body && block.body.txns">
+    <h3 md-subheader>Transactions</h3>
+    <md-list-item *ngFor="let transaction of block.body.txns">
+      <h4 md-line>{{ transaction | json }}</h4>
+    </md-list-item>
+  </md-list>
+</md-card>
+

@@ -27,6 +27,7 @@ import { ExplorerComponent } from './components/pages/explorer/explorer.componen
 import { BlockchainService } from './services/blockchain.service';
 import { DateTimePipe } from './pipes/date-time.pipe';
 import { TransactionsAmountPipe } from './pipes/transactions-amount.pipe';
+import { BlockComponent } from './components/pages/block/block.component';
 
 const ROUTES = [
   {
@@ -69,10 +70,22 @@ const ROUTES = [
   },
   {
     path: 'explorer',
-    component: ExplorerComponent,
-    data: {
-      breadcrumb: 'Explorer',
-    },
+    children: [
+      {
+        path: '',
+        component: ExplorerComponent,
+        data: {
+          breadcrumb: 'Explorer',
+        },
+      },
+      {
+        path: ':block',
+        component: BlockComponent,
+        data: {
+          breadcrumb: 'Block',
+        },
+      },
+    ],
   },
 ];
 
@@ -92,6 +105,7 @@ const ROUTES = [
     ExplorerComponent,
     DateTimePipe,
     TransactionsAmountPipe,
+    BlockComponent,
   ],
   entryComponents: [
     CreateWalletComponent,
