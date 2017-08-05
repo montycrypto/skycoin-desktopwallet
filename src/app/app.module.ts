@@ -28,6 +28,7 @@ import { BlockchainService } from './services/blockchain.service';
 import { DateTimePipe } from './pipes/date-time.pipe';
 import { TransactionsAmountPipe } from './pipes/transactions-amount.pipe';
 import { BlockComponent } from './components/pages/block/block.component';
+import { AddressComponent } from './components/pages/address/address.component';
 
 const ROUTES = [
   {
@@ -79,10 +80,24 @@ const ROUTES = [
         },
       },
       {
+        path: 'address/:address',
+        component: AddressComponent,
+        data: {
+          breadcrumb: 'Address',
+        },
+      },
+      {
         path: ':block',
         component: BlockComponent,
         data: {
           breadcrumb: 'Block',
+        },
+      },
+      {
+        path: 'transaction/:transaction',
+        component: TransactionComponent,
+        data: {
+          breadcrumb: 'Transaction',
         },
       },
     ],
@@ -106,6 +121,7 @@ const ROUTES = [
     DateTimePipe,
     TransactionsAmountPipe,
     BlockComponent,
+    AddressComponent,
   ],
   entryComponents: [
     CreateWalletComponent,

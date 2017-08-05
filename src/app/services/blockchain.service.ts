@@ -9,6 +9,14 @@ export class BlockchainService {
     private apiService: ApiService,
   ) { }
 
+  addressTransactions(id): Observable<any> {
+    return this.apiService.get('explorer/address', { address: id });
+  }
+
+  addressBalance(id): Observable<any> {
+    return this.apiService.get('outputs', { addrs: id });
+  }
+
   block(id): Observable<any> {
     return this.apiService.get('blocks', { start: id, end: id }).map(response => response.blocks[0]).flatMap(block => {
       return Observable.forkJoin(block.body.txns.map(transaction => {
