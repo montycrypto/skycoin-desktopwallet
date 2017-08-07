@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {
   MdButtonModule, MdCardModule, MdDialogModule, MdExpansionModule, MdGridListModule, MdIconModule, MdInputModule,
-  MdListModule,
+  MdListModule, MdMenuModule,
   MdSelectModule, MdTabsModule, MdToolbarModule
 } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -29,6 +29,7 @@ import { DateTimePipe } from './pipes/date-time.pipe';
 import { TransactionsAmountPipe } from './pipes/transactions-amount.pipe';
 import { BlockComponent } from './components/pages/block/block.component';
 import { AddressComponent } from './components/pages/address/address.component';
+import { PendingTransactionsComponent } from './components/pages/settings/pending-transactions/pending-transactions.component';
 
 const ROUTES = [
   {
@@ -102,6 +103,18 @@ const ROUTES = [
       },
     ],
   },
+  {
+    path: 'settings',
+    children: [
+      {
+        path: 'pending-transactions',
+        component: PendingTransactionsComponent,
+        data: {
+          breadcrumb: 'Pending transactions',
+        },
+      },
+    ],
+  },
 ];
 
 @NgModule({
@@ -122,6 +135,7 @@ const ROUTES = [
     TransactionsAmountPipe,
     BlockComponent,
     AddressComponent,
+    PendingTransactionsComponent,
   ],
   entryComponents: [
     CreateWalletComponent,
@@ -137,6 +151,7 @@ const ROUTES = [
     MdIconModule,
     MdInputModule,
     MdListModule,
+    MdMenuModule,
     MdSelectModule,
     MdTabsModule,
     MdToolbarModule,

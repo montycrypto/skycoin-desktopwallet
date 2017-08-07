@@ -1,11 +1,19 @@
 <md-toolbar color="primary">
   <span>Skycoin</span>
-  <span><app-breadcrumb></app-breadcrumb></span>
+  <!--<span><app-breadcrumb></app-breadcrumb></span>-->
   <!-- This fills the remaining space of the current row -->
   <span class="fill-remaining-space"></span>
 
   <span>{{ walletService.sum() | async | sky }}</span>
-  <button md-button>Settings</button>
+  <md-menu #settingsMenu="mdMenu">
+    <button md-menu-item> Networking </button>
+    <button md-menu-item> Blockchain </button>
+    <button md-menu-item> Outputs </button>
+    <button md-menu-item [routerLink]="['/settings/pending-transactions']"> Pending Transactions </button>
+    <button md-menu-item> Back-up wallet </button>
+  </md-menu>
+
+  <button md-button [mdMenuTriggerFor]="settingsMenu">Settings</button>
 </md-toolbar>
 <md-toolbar>
   <button md-button [routerLink]="['/wallets']">Wallets</button>
@@ -15,7 +23,9 @@
   <!-- This fills the remaining space of the current row -->
   <span class="fill-remaining-space"></span>
 
-  <span>Search field</span>
+  <span>
+    <input class="search-field" placeholder="Search ..">
+  </span>
 
 </md-toolbar>
 <div class="sky-container">

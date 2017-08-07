@@ -40,6 +40,10 @@ export class WalletService {
     return this.transactions.asObservable();
   }
 
+  pendingTransactions(): Observable<any> {
+    return this.apiService.get('pendingTxs');
+  }
+
   sendSkycoin(wallet_id: string, address: string, amount: number) {
     return this.apiService.post('wallet/spend', {id: wallet_id, dst: address, coins: amount});
   }

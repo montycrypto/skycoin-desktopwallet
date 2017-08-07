@@ -1,10 +1,10 @@
 <md-expansion-panel *ngFor="let wallet of walletService.all() | async">
   <md-expansion-panel-header>
     <md-panel-title>
-      {{ wallet.meta.label }} - {{ wallet.balance | sky }}
+      {{ wallet.meta.label }}
     </md-panel-title>
     <md-panel-description>
-      This is a summary of the content
+      {{ wallet.balance | sky }}
     </md-panel-description>
   </md-expansion-panel-header>
   <app-wallet-detail [wallet]="wallet"></app-wallet-detail>
