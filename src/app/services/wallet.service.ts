@@ -20,6 +20,15 @@ export class WalletService {
     this.loadData();
   }
 
+  addressesAsString(): Observable<string> {
+    return this.all().map(wallets => wallets.map(wallet => {
+      return wallet.entries.reduce((a, b) => {
+        a.push(b.address);
+        return a;
+      }, []).join(',');
+    }).join(','));
+  }
+
   addAddress(wallet: WalletModel) {
     return this.apiService.post('wallet/newAddress', {id: wallet.meta.filename});
   }
@@ -38,6 +47,12 @@ export class WalletService {
 
   history(): Observable<any[]> {
     return this.transactions.asObservable();
+  }
+
+  outputs(): Observable<any> {
+    return this.addressesAsString()
+      .filter(addresses => !!addresses)
+      .flatMap(addresses => this.apiService.get('outputs', {addrs: addresses}));
   }
 
   pendingTransactions(): Observable<any> {

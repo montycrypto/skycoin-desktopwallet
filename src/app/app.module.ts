@@ -30,6 +30,7 @@ import { TransactionsAmountPipe } from './pipes/transactions-amount.pipe';
 import { BlockComponent } from './components/pages/block/block.component';
 import { AddressComponent } from './components/pages/address/address.component';
 import { PendingTransactionsComponent } from './components/pages/settings/pending-transactions/pending-transactions.component';
+import { OutputsComponent } from './components/pages/settings/outputs/outputs.component';
 
 const ROUTES = [
   {
@@ -113,6 +114,13 @@ const ROUTES = [
           breadcrumb: 'Pending transactions',
         },
       },
+      {
+        path: 'outputs',
+        component: OutputsComponent,
+        data: {
+          breadcrumb: 'Outputs',
+        },
+      },
     ],
   },
 ];
@@ -136,6 +144,7 @@ const ROUTES = [
     BlockComponent,
     AddressComponent,
     PendingTransactionsComponent,
+    OutputsComponent,
   ],
   entryComponents: [
     CreateWalletComponent,
