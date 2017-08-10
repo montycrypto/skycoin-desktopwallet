@@ -32,6 +32,7 @@ import { AddressComponent } from './components/pages/address/address.component';
 import { PendingTransactionsComponent } from './components/pages/settings/pending-transactions/pending-transactions.component';
 import { OutputsComponent } from './components/pages/settings/outputs/outputs.component';
 import { BlockchainComponent } from './components/pages/settings/blockchain/blockchain.component';
+import { BackupComponent } from './components/pages/settings/backup/backup.component';
 
 const ROUTES = [
   {
@@ -109,6 +110,13 @@ const ROUTES = [
     path: 'settings',
     children: [
       {
+        path: 'backup',
+        component: BackupComponent,
+        data: {
+          breadcrumb: 'Backup',
+        },
+      },
+      {
         path: 'blockchain',
         component: BlockchainComponent,
         data: {
@@ -154,6 +162,7 @@ const ROUTES = [
     PendingTransactionsComponent,
     OutputsComponent,
     BlockchainComponent,
+    BackupComponent,
   ],
   entryComponents: [
     CreateWalletComponent,

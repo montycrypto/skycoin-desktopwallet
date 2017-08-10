@@ -1,5 +1,12 @@
+interface WalletModelMeta {
+  filename: string;
+  label: string;
+  seed: string;
+}
+
 export interface WalletModel {
-  meta: {filename: string, label: string};
+  meta: WalletModelMeta;
   entries: any[];
   balance?: number;
+  visible?: boolean;
 }

@@ -41,6 +41,10 @@ export class WalletService {
     return this.apiService.post('wallet/create', {label: label, seed: seed});
   }
 
+  folder(): Observable<string> {
+    return this.apiService.get('wallets/folderName').map(response => response.address);
+  }
+
   generateSeed(): Observable<string> {
     return this.apiService.get('wallet/newSeed').map(response => response.seed);
   }
