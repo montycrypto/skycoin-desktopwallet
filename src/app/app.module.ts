@@ -31,6 +31,7 @@ import { BlockComponent } from './components/pages/block/block.component';
 import { AddressComponent } from './components/pages/address/address.component';
 import { PendingTransactionsComponent } from './components/pages/settings/pending-transactions/pending-transactions.component';
 import { OutputsComponent } from './components/pages/settings/outputs/outputs.component';
+import { BlockchainComponent } from './components/pages/settings/blockchain/blockchain.component';
 
 const ROUTES = [
   {
@@ -108,10 +109,10 @@ const ROUTES = [
     path: 'settings',
     children: [
       {
-        path: 'pending-transactions',
-        component: PendingTransactionsComponent,
+        path: 'blockchain',
+        component: BlockchainComponent,
         data: {
-          breadcrumb: 'Pending transactions',
+          breadcrumb: 'Blockchain',
         },
       },
       {
@@ -119,6 +120,13 @@ const ROUTES = [
         component: OutputsComponent,
         data: {
           breadcrumb: 'Outputs',
+        },
+      },
+      {
+        path: 'pending-transactions',
+        component: PendingTransactionsComponent,
+        data: {
+          breadcrumb: 'Pending transactions',
         },
       },
     ],
@@ -145,6 +153,7 @@ const ROUTES = [
     AddressComponent,
     PendingTransactionsComponent,
     OutputsComponent,
+    BlockchainComponent,
   ],
   entryComponents: [
     CreateWalletComponent,

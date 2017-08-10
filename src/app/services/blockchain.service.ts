@@ -33,8 +33,12 @@ export class BlockchainService {
     });
   }
 
-  blocks() {
-    return this.apiService.get('last_blocks', { num: 100 }).map(response => response.blocks.reverse());
+  blocks(num: number = 100) {
+    return this.apiService.get('last_blocks', { num: num }).map(response => response.blocks.reverse());
+  }
+
+  lastBlock() {
+    return this.blocks(1).map(blocks => blocks[0]);
   }
 
   private retrieveInputAddress(input: string) {
