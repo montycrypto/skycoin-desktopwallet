@@ -63,6 +63,10 @@ export class WalletService {
     return this.apiService.get('pendingTxs');
   }
 
+  renameWallet(wallet: WalletModel, label: string): Observable<WalletModel> {
+    return this.apiService.post('wallet/update', { id: wallet.meta.filename, label: label });
+  }
+
   sendSkycoin(wallet_id: string, address: string, amount: number) {
     return this.apiService.post('wallet/spend', {id: wallet_id, dst: address, coins: amount});
   }

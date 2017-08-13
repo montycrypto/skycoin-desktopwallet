@@ -35,6 +35,7 @@ import { BlockchainComponent } from './components/pages/settings/blockchain/bloc
 import { BackupComponent } from './components/pages/settings/backup/backup.component';
 import { NetworkComponent } from './components/pages/settings/network/network.component';
 import { NetworkService } from './services/network.service';
+import { ChangeNameComponent } from './components/pages/wallets/change-name/change-name.component';
 
 const ROUTES = [
   {
@@ -173,9 +174,11 @@ const ROUTES = [
     BlockchainComponent,
     BackupComponent,
     NetworkComponent,
+    ChangeNameComponent,
   ],
   entryComponents: [
     CreateWalletComponent,
+    ChangeNameComponent,
   ],
   imports: [
     BrowserModule,
