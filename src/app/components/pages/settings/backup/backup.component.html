@@ -20,11 +20,5 @@
       <button md-raised-button color="primary" (click)="download(row)">Download</button>
     </ng-template>
   </ngx-datatable-column>
-  <ngx-datatable-column name="Seed" [flexGrow]="1">
-    <ng-template let-row="row" ngx-datatable-cell-template>
-      <button md-raised-button *ngIf="!row.visible" (click)="row.visible = !row.visible">Show</button>
-      <p *ngIf="row.visible">{{ row.meta.seed }}</p>
-    </ng-template>
-  </ngx-datatable-column>
 </ngx-datatable>
 
