@@ -24,7 +24,7 @@ export class SendSkycoinComponent implements OnInit {
   ngOnInit() {
     this.initForm();
     IntervalObservable
-      .create(1000)
+      .create(2500)
       .filter(() => !!this.transactions.length)
       .flatMap(() => this.walletService.retrieveUpdatedTransactions(this.transactions))
       .subscribe(transactions => this.records = transactions);

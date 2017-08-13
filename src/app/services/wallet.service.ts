@@ -9,6 +9,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/mergeMap';
 import * as moment from 'moment';
+import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 
 @Injectable()
 export class WalletService {
@@ -21,6 +22,9 @@ export class WalletService {
     private apiService: ApiService
   ) {
     this.loadData();
+    IntervalObservable
+      .create(30000)
+      .subscribe(() => this.loadData());
   }
 
   addressesAsString(): Observable<string> {
