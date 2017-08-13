@@ -6,7 +6,7 @@
 
   <span>{{ walletService.sum() | async | sky }}</span>
   <md-menu #settingsMenu="mdMenu">
-    <button md-menu-item> Networking </button>
+    <button md-menu-item [routerLink]="['/settings/network']"> Networking </button>
     <button md-menu-item [routerLink]="['/settings/blockchain']"> Blockchain </button>
     <button md-menu-item [routerLink]="['/settings/outputs']"> Outputs </button>
     <button md-menu-item [routerLink]="['/settings/pending-transactions']"> Pending Transactions </button>

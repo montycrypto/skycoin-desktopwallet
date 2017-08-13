@@ -33,6 +33,8 @@ import { PendingTransactionsComponent } from './components/pages/settings/pendin
 import { OutputsComponent } from './components/pages/settings/outputs/outputs.component';
 import { BlockchainComponent } from './components/pages/settings/blockchain/blockchain.component';
 import { BackupComponent } from './components/pages/settings/backup/backup.component';
+import { NetworkComponent } from './components/pages/settings/network/network.component';
+import { NetworkService } from './services/network.service';
 
 const ROUTES = [
   {
@@ -124,6 +126,13 @@ const ROUTES = [
         },
       },
       {
+        path: 'network',
+        component: NetworkComponent,
+        data: {
+          breadcrumb: 'Networking',
+        },
+      },
+      {
         path: 'outputs',
         component: OutputsComponent,
         data: {
@@ -163,6 +172,7 @@ const ROUTES = [
     OutputsComponent,
     BlockchainComponent,
     BackupComponent,
+    NetworkComponent,
   ],
   entryComponents: [
     CreateWalletComponent,
@@ -190,6 +200,7 @@ const ROUTES = [
   providers: [
     ApiService,
     BlockchainService,
+    NetworkService,
     WalletService,
   ],
   bootstrap: [AppComponent]
