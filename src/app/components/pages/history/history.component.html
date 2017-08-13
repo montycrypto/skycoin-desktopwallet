@@ -8,9 +8,9 @@
   [limit]="10"
   [scrollbarH]="true"
   (activate)="onActivate($event)">
-  <ngx-datatable-column name="Timestamp" prop="timestamp" [flexGrow]="1">
+  <ngx-datatable-column name="Timestamp" prop="timestamp" [flexGrow]="2">
     <ng-template let-value="value" ngx-datatable-cell-template>
-      <strong>{{ value | dateFromNow }}</strong>
+      {{ value | dateFromNow }}
     </ng-template>
   </ngx-datatable-column>
   <ngx-datatable-column name="Amount" [flexGrow]="1"></ngx-datatable-column>
