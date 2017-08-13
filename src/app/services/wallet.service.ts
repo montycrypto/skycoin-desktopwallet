@@ -5,12 +5,15 @@ import { Subject } from 'rxjs/Subject';
 import { WalletModel } from '../models/wallet.model';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
+import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/mergeMap';
+import * as moment from 'moment';
 
 @Injectable()
 export class WalletService {
 
+  recentTransactions: Subject<any[]> = new BehaviorSubject<any[]>([]);
   transactions: Subject<any[]> = new BehaviorSubject<any[]>([]);
   wallets: Subject<WalletModel[]> = new BehaviorSubject<WalletModel[]>([]);
 
@@ -63,12 +66,31 @@ export class WalletService {
     return this.apiService.get('pendingTxs');
   }
 
+  recent(): Observable<any[]> {
+    return this.recentTransactions.asObservable();
+  }
+
   renameWallet(wallet: WalletModel, label: string): Observable<WalletModel> {
     return this.apiService.post('wallet/update', { id: wallet.meta.filename, label: label });
   }
 
+  retrieveUpdatedTransactions(transactions) {
+    return Observable.forkJoin((transactions.map(transaction => {
+      return this.apiService.get('transaction', { txid: transaction.id }).map(response => {
+        response.amount = transaction.amount;
+        response.address = transaction.address;
+        return response;
+      });
+    })));
+  }
+
   sendSkycoin(wallet_id: string, address: string, amount: number) {
-    return this.apiService.post('wallet/spend', {id: wallet_id, dst: address, coins: amount});
+    return this.apiService.post('wallet/spend', {id: wallet_id, dst: address, coins: amount})
+      .do(output => this.recentTransactions.first().subscribe(transactions => {
+        const transaction = {id: output.txn.txid, address: address, amount: amount / 1000000};
+        transactions.push(transaction);
+        this.recentTransactions.next(transactions);
+      }));
   }
 
   sum(): Observable<number> {

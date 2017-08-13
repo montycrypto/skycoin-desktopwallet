@@ -1,6 +1,6 @@
 .input-field {
   display: block;
-  margin-top: 40px;
+  margin-top: 20px;
   width: 100%;
 }
 
@@ -10,4 +10,8 @@
 
 md-select {
   padding-bottom: 1.29688em;
+}
+
+md-card {
+  margin-bottom: 20px;
 }
